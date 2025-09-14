@@ -1,26 +1,26 @@
-import { useState } from 'react';
-import './App.css';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import Section from './components/Section';
-import conversionData from '../src/lib/conversion.json';
+import { useState } from "react";
+import "./App.css";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Section from "./components/Section";
+import conversionData from "../src/lib/conversion.json";
 
 function App() {
-  const [unitFrom, setUnitFrom] = useState('');
-  const [unitTo, setUnitTo] = useState('');
-  const [error, setError] = useState('');
+  const [unitFrom, setUnitFrom] = useState("");
+  const [unitTo, setUnitTo] = useState("");
+  const [error, setError] = useState("");
 
   const conversionHandler = (value, fromUnit, toUnit, category) => {
     try {
       if (isNaN(value)) {
-        throw new Error('Input value is not a number');
+        throw new Error("Input value is not a number");
       }
 
       const fromFactor = conversionData[category][fromUnit];
       const toFactor = conversionData[category][toUnit];
 
       if (fromFactor === undefined || toFactor === undefined) {
-        throw new Error('Invalid unit conversion');
+        throw new Error("Invalid unit conversion");
       }
 
       const convertedValue = (value * fromFactor) / toFactor;
@@ -32,7 +32,7 @@ function App() {
   };
 
   const handleUnitFromChange = (value, fromUnit, toUnit, category) => {
-    setError(''); // Reset error message
+    setError(""); // Reset error message
 
     const convertedValue = conversionHandler(value, fromUnit, toUnit, category);
 
@@ -43,7 +43,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="App container pt-2">
       <Header />
       <Section
         unitFrom={unitFrom}
